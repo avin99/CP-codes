@@ -10,22 +10,18 @@
 using namespace std;
 int dp[101][1001];
 int knapsack(int wt[], int val[], int W, int n) {
-    for (int i = 0; i < n + 1; i++) {
-        for (int j = 0; j < W + 1; j++) {
-            if (i == 0 || j == 0)
-                dp[i][j] = 0;
-        }
+    if (n == 0 || W == 0) {
+        return 0;
     }
-    for (int i = 1; i < n + 1; i++) {
-        for (int j = 1; j < W + 1; j++) {
-            if (wt[i - 1] <= j) {
-                dp[i][j] = max(val[i - 1] + dp[i - 1][j - wt[i - 1]], dp[i - 1][j]);
-            } else {
-                dp[i][j] = dp[i - 1][j];
-            }
-        }
+    if (dp[n][W] != -1)
+        return dp[n][W];
+    if (wt[n - 1] <= W) {
+        dp[n][W] = max(val[n - 1] + knapsack(wt, val, W - wt[n - 1], n - 1), knapsack(wt, val, W, n - 1));
+        return dp[n][W];
+    } else {
+        dp[n][W] = knapsack(wt, val, W, n - 1);
+        return dp[n][W];
     }
-    return dp[n][W];
 
 }
 
@@ -36,6 +32,7 @@ int main() {
     freopen("error.txt", "w", stderr);
 #endif
     IOS;
+    memset(dp, -1, sizeof(dp));
     int n, i, j, a, b, W;
     cin >> n >> W;
     int val[n], wt[n];
