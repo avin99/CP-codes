@@ -21,7 +21,7 @@ bool knapsack(int arr[], int sum, int n) {
     for (int i = 1; i < n + 1; i++) {
         for (int j = 1; j < sum + 1; j++) {
             if (arr[i - 1] <= j) {
-                dp[i][j] = ((arr[i - 1] + dp[i - 1][j - [i - 1]]) || (dp[i - 1][j]));
+                dp[i][j] = (( dp[i - 1][j - arr[i - 1]]) || (dp[i - 1][j]));
             } else {
                 dp[i][j] = dp[i - 1][j];
             }
@@ -45,7 +45,10 @@ int main() {
         cin >> arr[i];
     }
 
-    cout << knapsack(arr, sum, n) << endl;
+    if (knapsack(arr, sum, n))
+        cout << "YES" << endl;
+    else
+        cout << "NO" << endl;
 
     return 0;
 }
