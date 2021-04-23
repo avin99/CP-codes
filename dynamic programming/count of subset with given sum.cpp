@@ -19,6 +19,7 @@ int knapsack(int val[], int n, int sum) {
                 dp[i][j] = 1;
         }
     }
+    //simply adding for getting the desired output
     for (int i = 1; i < n + 1; i++) {
         for (int j = 1; j < sum + 1; j++) {
             if (val[i - 1] <= j) {
@@ -47,7 +48,7 @@ int main() {
         cin >> arr[i];
     }
 
-    cout << (knapsack(arr, n, sum)) << endl;
+    cout << knapsack(arr, n, sum) << endl;
 
 
     return 0;
