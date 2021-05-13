@@ -1,5 +1,3 @@
-
-// s2 is reverse(s1)
 int lcs(int x, int y, string s1, string s2)
 {
     // your code here
@@ -19,6 +17,13 @@ int lcs(int x, int y, string s1, string s2)
 
         }
     }
-
     return dp[x][y];
+}
+int minimumNumberOfDeletions(string S) {
+    // code here
+    string s2;
+    s2 = S;
+    reverse(S.begin(), S.end());
+    int res = lcs(S.size(), S.size(), S, s2);
+    return S.size() - res;
 }
