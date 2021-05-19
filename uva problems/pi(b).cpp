@@ -14,25 +14,17 @@ int main() {
     freopen("error.txt", "w", stderr);
 #endif
     IOS;
-    ll n, r, i, j;
-    while (cin >> n) {
-        if (n == 0)break;
-        ll a[n];
-        for (i = 0; i < n; i++)cin >> a[i];
-        ll cnt = 0;
-        for (i = 0; i < n; i++) {
-            for (j = i + 1; j < n; j++) {
-                if (__gcd(a[i], a[j]) == 1)cnt++;
-            }
-        }
-        ll ch = n * (n - 1) / 2;
-        if (cnt > 0) {
-            cout << fixed << setprecision(6) << sqrt((6.0 * ch) / cnt) << endl;
-
-        } else {
-            cout << "No estimate for this data set." << endl;
-        }
-    }
-
+    ll n, m, i, j;
+    string a, b;
+    cin >> a >> b;
+    reverse(a.begin(), a.end());
+    reverse(b.begin(), b.end());
+    n = stoll(a);
+    m = stoll(b);
+    ll ans = n + m;
+    string res;
+    res = to_string(ans);
+    reverse(res.begin(), res.end());
+    cout << res << endl;
     return 0;
 }
